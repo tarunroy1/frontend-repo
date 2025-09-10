@@ -1,0 +1,373 @@
+/* admin.css */
+
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  margin: 0;
+  background: #f6f7fb;
+}
+
+/* Sidebar */
+#sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 220px;
+  background: #293e7b;
+  color: #fff;
+  padding: 1.2rem 0;
+  box-shadow: 2px 0 8px rgba(45,60,90,.07);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100vh;
+}
+#sidebar h2 {
+  text-align: center;
+  margin-bottom: 26px;
+  font-size: 1.3rem;
+  color: #fff;
+}
+nav {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-left: 28px;
+}
+nav a {
+  color: #d7dcfa;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color .2s;
+  font-size: 1.09rem;
+  padding: 2px 0;
+}
+nav a.active, nav a:hover {
+  color: #e3e4ff;
+  border-left: 3px solid #ffa500;
+  padding-left: 6px;
+}
+
+/* Admin info */
+.admin-info {
+  margin-left: 24px;
+  margin-bottom: 14px;
+  font-size: .95rem;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.admin-info button {
+  background: #4e73df;
+  color: #fff;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* Main content */
+#main-content {
+  margin-left: 240px;
+  padding: 2rem 2.5rem 1rem;
+  min-height: 100vh;
+  background: #f6f7fb;
+}
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+header h2 {
+  font-size: 1.3rem;
+  margin: 0;
+}
+header button {
+  background: #4e73df;
+  color: #fff;
+  border: none;
+  padding: .77rem 1.2rem;
+  border-radius: .5rem;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: 0 1px 6px rgba(44,62,80,.08);
+  transition: background .2s, transform .2s;
+}
+header button:hover {
+  background: #2940a6;
+  transform: scale(1.05);
+}
+
+/* Table */
+h3 { margin-top: 28px; font-size: 1.15rem; }
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+  background: #fff;
+  border-radius: .7rem;
+  overflow: hidden;
+}
+th, td {
+  padding: 10px 16px;
+  text-align: left;
+}
+th {
+  background: #e9ebf6;
+  color: #2940a6;
+}
+td {
+  border-top: 1px solid #e9ebf6;
+}
+tr:hover { background: #f0f4ff; }
+
+.status {
+  color: #da7d00;
+  font-weight: 600;
+}
+.status.approved { color: #28a745; }
+
+.actions button {
+  margin-right: 8px;
+  border: none;
+  padding: 6px 16px;
+  border-radius: 4px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all .2s;
+}
+.actions button.approve {
+  background: #ffd966;
+  color: #2440a6;
+}
+.actions button.approve.approved {
+  background: #28a745;
+  color: #fff;
+}
+.actions button.approve:hover:not(.approved) {
+  background: #ffb600;
+  color: #fff;
+}
+.actions button.delete {
+  background: #ff4d4f;
+  color: #fff;
+}
+.actions button.delete:hover { background: #c70000; }
+
+/* Modal */
+#modal {
+  position: fixed;
+  left: 0; top: 0; right: 0; bottom: 0;
+  background: rgba(30,35,60,0.28);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+#modal.hidden { display: none; }
+.modal-content {
+  background: #fff;
+  padding: 2rem 2.2rem;
+  border-radius: 1rem;
+  box-shadow: 0 1px 9px rgba(45,60,130,0.17);
+  width: 330px;
+  transition: transform .3s;
+}
+.modal-content h3 {
+  margin-top: 0;
+  font-size: 1.09rem;
+}
+.modal-content label {
+  display: block;
+  margin-bottom: .9rem;
+}
+.modal-content input[type='text'],
+.modal-content select,
+.modal-content input[type='file'] {
+  width: 100%;
+  padding: .5rem;
+  margin-top: .2rem;
+  border: 1px solid #a9aacb;
+  border-radius: .4rem;
+  font-size: .97rem;
+}
+.modal-content button {
+  margin-top: 8px;
+  padding: .7rem 1.1rem;
+  border-radius: .5rem;
+  border: none;
+  background: #2940a6;
+  color: #fff;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  background: #eff2f7;
+  padding: 1.2rem 0;
+  margin-top: 1rem;
+  border-top: 1px solid #dbe1ec;
+}
+footer h1 {
+  font-size: 1.18rem;
+  margin: 0;
+  color: #3456ac;
+}
+
+/* Responsive */
+@media (max-width: 700px) {
+  #sidebar {
+    position: relative;
+    width: 100vw;
+    height: auto;
+    padding: .7rem 0;
+    flex-direction: row;
+    justify-content: flex-start;
+    box-shadow: none;
+    z-index: 10;
+  }
+  #main-content { margin-left: 0; padding: .7rem; }
+  .modal-content { width: 96vw; padding: 1rem; border-radius: .6rem; }
+}
+.btn {
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* Upload button */
+.btn.upload {
+  background-color: #4a6cf7; /* default blue */
+  color: white;
+}
+
+.btn.upload:hover {
+  background-color: #28a745; /* green */
+  transform: scale(1.1);     /* increase size */
+}
+
+/* Cancel button */
+.btn.cancel {
+  background-color: #6c757d; /* grey */
+  color: white;
+}
+
+.btn.cancel:hover {
+  background-color: #dc3545; /* red */
+  transform: scale(1.1);     /* increase size */
+}
+
+
+
+/* trying */
+/* Sidebar Admin Manager Box */
+#adminManager {
+  background: #1d2f6f; /* dark blue sidebar tone */
+  padding: 20px;
+  border-radius: 10px;
+  margin-top: 15px;
+  color: #fff;
+}
+
+#adminManager h2 {
+  font-size: 18px;
+  margin-bottom: 15px;
+  color: #f9f9f9;
+}
+
+#adminManager h3 {
+  margin-top: 20px;
+  font-size: 16px;
+  color: #e0e0e0;
+}
+
+#adminManager form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+#adminManager input {
+  padding: 10px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  background: #fff;
+  color: #333;
+}
+
+#adminManager input:focus {
+  outline: none;
+  border: 2px solid #3498db;
+}
+
+#adminManager button {
+  padding: 10px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  background: #3498db;
+  color: #fff;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#adminManager button:hover {
+  background: #27ae60;
+  transform: scale(1.05);
+}
+
+/* Admin List */
+#adminManager ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 10px;
+}
+
+#adminManager li {
+  background: #2c3e91;
+  padding: 8px 10px;
+  margin: 6px 0;
+  border-radius: 6px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+  color: #fff;
+}
+
+#adminManager li span {
+  font-weight: bold;
+  color: #fff;
+}
+
+#adminManager .removeBtn {
+  background: #e74c3c;
+  color: white;
+  border: none;
+  padding: 5px 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 12px;
+  transition: 0.3s;
+}
+
+#adminManager .removeBtn:hover {
+  background: #c0392b;
+}
+
+#sidebar {
+  height: 100vh;             /* Full window height */
+  overflow-y: auto;          /* Makes sidebar scrollable */
+  position: fixed;           /* Optional: keep sidebar fixed while scrolling main content */
+  left: 0; top: 0; bottom: 0;
+  width: 280px;              /* Or your desired sidebar width */
+  background: #2b397c;       /* Your sidebar background color */
+  /* Other styling as needed */
+}
+

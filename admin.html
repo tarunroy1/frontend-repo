@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin Panel - University Question Library</title>
+  <link rel="stylesheet" href="admin.css" />
+</head>
+<body>
+  <!-- No localStorage authentication, handled by JWT from login page -->
+
+  <!-- Sidebar -->
+  <aside id="sidebar">
+    <h2>Apex Tech Solutions</h2>
+    <nav>
+      <a class="active" href="#">Dashboard</a>
+      <a href="#">Manage Papers</a>
+      <a href="#">Bulk Upload</a>
+      <a href="#" id="usersLink">Users</a>
+      <a href="#">Tags</a>
+      <a href="#">Settings</a>
+    </nav>
+   <div id="usersPanel" style="display:none; margin: 20px; color: white;">
+    <h3>Total Admin Users: <span id="userCount">0</span></h3>
+    <ul id="userList"></ul>
+   </div>
+
+    <h2>👨‍💻 Manage Admins</h2>
+
+    <div id="adminManager">
+      <!-- Add Admin Form -->
+      <form id="addAdminForm">
+        <input type="text" id="newAdminUser" placeholder="New Username" required />
+        <input type="password" id="newAdminPass" placeholder="New Password" required />
+        <button type="submit">➕ Add Admin</button>
+      </form>
+      <h3>All Admins:</h3>
+      <ul id="adminList"></ul>
+    </div>
+
+    <div class="admin-info">
+      <span id="adminName">Logged in: admin</span>
+      <button id="logoutBtn">Logout</button>
+    </div>
+  </aside>
+  <!-- Main Content -->
+  <main id="main-content">
+    <header>
+      <h2>Admin Dashboard</h2>
+      <button id="addPaperBtn">Upload New Paper</button>
+    </header>
+
+    <!-- Papers Table -->
+    <section id="papers">
+      <h3>Uploaded Question Papers</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Dept</th>
+            <th>Semester</th>
+            <th>Year</th>
+            <th>Subject</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="paperRows">
+          <!-- Dynamic rows by JS -->
+        </tbody>
+      </table>
+    </section>
+  </main>
+
+  <!-- Modal Form for Uploading Papers -->
+  <div id="modal" class="hidden">
+    <div class="modal-content">
+      <h3>Upload Question Paper</h3>
+      <form id="uploadForm">
+        <label>Title: <input type="text" id="title" required /></label><br/>
+        <label>Department:
+          <select id="dept" required>
+            <option value="">Select</option>
+            <option value="BCA">BCA</option>
+            <option value="BBA">BBA</option>
+            <option value="IT">IT</option>
+            <option value="HM">HM</option>
+            <option value="MBA">MBA</option>
+          </select>
+        </label><br/>
+        <label>Semester:
+          <select id="sem" required>
+            <option value="">Select</option>
+            <option value="1">1st</option>
+            <option value="2">2nd</option>
+            <option value="3">3rd</option>
+            <option value="4">4th</option>
+            <option value="5">5th</option>
+            <option value="6">6th</option>
+          </select>
+        </label><br/>
+        <label>Year:
+          <select id="year" required>
+            <option value="">Select</option>
+            <option value="2020">2020</option>
+            <option value="2021">2021</option>
+            <option value="2022">2022</option>
+            <option value="2023">2023</option>
+            <option value="2024">2024</option>
+          </select>
+        </label><br/>
+        <label>Subject: <input type="text" id="subject" required /></label><br/>
+        <label>Upload file<input type="file" id="paperFile" accept=".pdf, .jpg, .jpeg, .png" required></label>
+        <div>
+          <button type="submit" class="btn upload">Upload</button>
+          <button type="button" id="closeModalBtn" class="btn cancel">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <h1>Designed by Tarun from Apex Tech Solutions.</h1>
+  </footer>
+  <!-- Your Admin JS -->
+  <script src="admin.js"></script>
+</body>
+</html>

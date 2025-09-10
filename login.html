@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Login</title>
+  <link rel="stylesheet" href="admin.css">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #f5f7fa;
+      font-family: Arial, sans-serif;
+    }
+    .form-container {
+      background: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      width: 350px;
+      text-align: center;
+    }
+    h2 { margin-bottom: 20px; color: #333; }
+    .input-group { margin-bottom: 15px; text-align: left; }
+    .input-group label {
+      display: block; margin-bottom: 5px; font-weight: bold; color: #555;
+    }
+    .input-group input {
+      width: 100%; padding: 12px; font-size: 16px;
+      border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box;
+    }
+    .btn {
+      width: 100%; padding: 12px; background: #007bff; color: white;
+      font-size: 16px; border: none; border-radius: 6px;
+      cursor: pointer; transition: background 0.3s;
+    }
+    .btn.success { background: #28a745; }
+    .btn.error { background: #dc3545; }
+    p { margin-top: 15px; }
+    a { color: #007bff; text-decoration: none; }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <h2>Admin Login</h2>
+    <form id="loginForm">
+      <div class="input-group">
+        <label for="username">Username</label>
+        <input type="text" id="username" placeholder="Enter Username" required>
+      </div>
+      <div class="input-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" placeholder="Enter Password" required>
+      </div>
+      <button type="submit" class="btn" id="loginBtn">Login</button>
+      <p id="error" style="color:red; display:none;">Invalid Username or Password!</p>
+      <p>Don’t have an account? <a href="singhup.html">Sign Up</a></p>
+    </form>
+  </div>
+  <script>
+    document.getElementById("loginForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const username = document.getElementById("username").value.trim();
+      const password = document.getElementById("password").value.trim();
+      const loginBtn  = document.getElementById("loginBtn");
+      const errorMsg  = document.getElementById("error");
+
+      // Call backend API
+//    
+ fetch('https://question-bank-backend-2.onrender.com/api/auth/login', {
+   method: 'POST',
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({ username, password })
+  })
+//      fetch('/api/auth/login', {
+//   method: 'POST',
+//   headers: { "Content-Type": "application/json" },
+//   body: JSON.stringify({ username, password })
+// })
+
+      .then(res => res.json())
+      .then(data => {
+        if (data.token) {
+          loginBtn.classList.remove("error");
+          loginBtn.classList.add("success");
+          errorMsg.style.display = "none";
+          // Save JWT token for future admin API calls
+          localStorage.setItem('token', data.token);
+
+          setTimeout(() => {
+            window.location.assign("admin.html");
+          }, 400);
+        } else {
+          loginBtn.classList.remove("success");
+          loginBtn.classList.add("error");
+          errorMsg.style.display = "block";
+          errorMsg.innerText = data.error || "Invalid Username or Password!";
+        }
+      })
+      .catch(() => {
+        loginBtn.classList.remove("success");
+        loginBtn.classList.add("error");
+        errorMsg.style.display = "block";
+        errorMsg.innerText = "Network Error. Try again.";
+      });
+    });
+  </script>
+</body>
+</html>
