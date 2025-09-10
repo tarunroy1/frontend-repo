@@ -426,7 +426,7 @@
 
 
 // updated code sep5 approved try
-const apiBase = 'https://question-bank-backend-2.onrender.com';
+const apiBase = "https://question-bank-backend-2.onrender.com/api";
 //  const apiBase = '/api';
 //const apiBase = 'https://yourapp.onrender.com/api';
 
