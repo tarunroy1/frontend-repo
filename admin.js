@@ -829,7 +829,9 @@ document.addEventListener('DOMContentLoaded', function() {
     };
   }
 });
-
+document.querySelector('.menu-toggle').addEventListener('click', () => {
+  document.querySelector('.sidebar').classList.toggle('open');
+});
 // Make functions global
 window.approvePaper = approvePaper;
 window.deletePaper = deletePaper;
