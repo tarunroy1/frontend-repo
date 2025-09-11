@@ -370,4 +370,67 @@ footer h1 {
   background: #2b397c;       /* Your sidebar background color */
   /* Other styling as needed */
 }
+/* Mobile view fixes */
+@media (max-width: 768px) {
+  /* Sidebar smaller on phones */
+  .sidebar {
+    width: 220px;
+    font-size: 14px;
+  }
+
+  /* Sidebar text */
+  .sidebar a {
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  /* Navbar (top area) adjust */
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px;
+  }
+
+  /* Content area below sidebar */
+  .content {
+    margin-left: 220px;
+    padding: 10px;
+  }
+
+  /* Upload button */
+  .upload-btn {
+    font-size: 14px;
+    padding: 8px 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Sidebar collapsible for very small phones */
+  .sidebar {
+    position: fixed;
+    left: -220px;
+    top: 0;
+    height: 100%;
+    transition: left 0.3s ease;
+    z-index: 1000;
+  }
+
+  .sidebar.open {
+    left: 0;
+  }
+
+  .menu-toggle {
+    display: block;
+    font-size: 20px;
+    margin: 10px;
+    cursor: pointer;
+  }
+
+  .content {
+    margin-left: 0;
+    padding: 10px;
+  }
+}
+
+
 
